@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <h1>Hello Player 1!</h1>
-  <h2>Game</h2>
+  <h2>Fruit machine</h2>
   <div class="row">
     <div class="col-md-1"></div>
 
@@ -16,11 +16,15 @@
     <div class="col-md-1" style="background-color: <%= @game[:result][3] %>">
       @
     </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+      <h3>Your account: <%= @user.account %></h3>
+      <h3>Bank total: <%= @bank.total %></h3>
+    </div>
   </div>
   <% if @game[:message] %>
-    <h2><%= @game[:message] %></h2>
+    <h1><%= @game[:message] %></h1>
   <% end %>
-  <h2>Your account: <%= @user.account %></h2>
-  <h2>Bank total: <%= @bank.total %></h2>
+
   <%= button_to 'Play', games_path %>
 </div>
