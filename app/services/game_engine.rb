@@ -13,13 +13,13 @@ class GameEngine
     }
     uniq = game[:result].uniq.count
     if uniq == 1
-      game[:message] = 'Congratulations!'
+      game[:message] = 'Congratulations! All colors are same!'
       pay_account(@bank.total)
     elsif uniq == 4
-      game[:message] = 'Congratulations!'
+      game[:message] = 'Congratulations! All colors are different!'
       pay_account(@bank.total / 2)
     elsif (1..4).find {|i| game[:result][i-1] == game[:result][i] }.present?
-      game[:message] = 'Congratulations!'
+      game[:message] = 'Congratulations! 2 colors are same!'
       pay_account(ONE_RUN_PRICE * 2)
     else
       game[:message] = 'No luck this time!'
