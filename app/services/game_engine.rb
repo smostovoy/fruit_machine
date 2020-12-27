@@ -11,18 +11,17 @@ class GameEngine
     game = {
       result: Array.new(4) { colorize }
     }
-
-    case game[:result].uniq
-    when 1
-      game[:winner] = :all_Same
+    uniq = game[:result].uniq.count
+    if uniq == 1
       game[:message] = 'Congratulations!'
       pay_account(@bank.total)
-    when 4
-      game[:winner] = :all_diff
+    elsif uniq == 4
       game[:message] = 'Congratulations!'
       pay_account(@bank.total / 2)
+    elsif (1..4).find {|i| game[:result][i-1] == game[:result][i] }.present?
+      game[:message] = 'Congratulations!'
+      pay_account(ONE_RUN_PRICE * 2)
     else
-      game[:winner] = :no
       game[:message] = 'No luck this time!'
       deduct_account(ONE_RUN_PRICE)
     end
